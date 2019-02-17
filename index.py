@@ -17,7 +17,58 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route("/")
 def index():
-    return "Index!"
+    return ''' 
+    <!DOCTYPE html>
+<html>
+	<head>
+
+		<title>Test LABSEC</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="Estilo.css">
+
+	</head>
+	<body>
+
+		<div id="principal">
+			
+			<img src="imagens/capa.png">
+			
+			<div id="menu">
+				<a href="Index.html">HOME</a> |
+				<a href="Biografia.html">BIOGRAFIA</a> |
+				<a href="Campanha-publicitaria.html">CAMPANHAS PUBLICITÁRIA</a> |
+				<a href="Contato.html">CONTATO</a>
+			</div>
+				
+			<div id="conteudo"><!-- inicio do conteudo-->
+
+				<h1>Contato</h1>
+
+				<p class="italico">
+					"A vida é uma passarela e nós somos os modelos, devemos desfilar sem medo."
+				</p>
+
+				<img src="imagens/foto2.png" class="img-campanha">
+
+				<div>
+					<strong>E-mail:</strong> contato@annabella.com.br 
+					<br>
+					<strong>Telefone:</strong> (48) 9978-6589
+				</div>
+				
+				
+			</div><!-- fim do conteudo-->
+
+			<div id="rodape">
+				<h4>Todos os direitos reservados</h4>
+			</div>
+
+		</div>
+		
+
+	</body>
+</html>
+    '''
 
 
 def allowed_file(filename):
