@@ -31,14 +31,14 @@ def index():
 
 		<div id="principal">
 			
-			<img src="imagens/capa.png">
+			<img src="labsec-brenno/imagens/capa.png">
 			
 			<div id="menu">
                 <a href="/">HOME</a> |
 				<a href="/file">RESUMO CRIPTOGRÁFICO</a> |
-				<a href="Biografia.html">BIOGRAFIA</a> |
-				<a href="Campanha-publicitaria.html">CAMPANHAS PUBLICITÁRIA</a> |
-				<a href="Contato.html">CONTATO</a>
+				<a href="/keys">GERAR CHAVES ASSIMETRÍCAS</a> |
+				<a href="/DigitalCertificate">GERAR CERTIFICADOS DIGITAIS</a> |
+				<a href="/listSerialNumber">REPOSITÓRIO PARA CERTIFICADOS EMITIDOS</a>
 			</div>
 				
 			<div id="conteudo"><!-- inicio do conteudo-->
@@ -46,15 +46,15 @@ def index():
 				<h1>Contato</h1>
 
 				<p class="italico">
-					"A vida é uma passarela e nós somos os modelos, devemos desfilar sem medo."
+					"Não há liberdade sem privacidade."
 				</p>
 
 				<img src="imagens/foto2.png" class="img-campanha">
 
 				<div>
-					<strong>E-mail:</strong> contato@annabella.com.br 
+					<strong>E-mail:</strong> brennoaraujoqueiroz@gmail.com 
 					<br>
-					<strong>Telefone:</strong> (48) 9978-6589
+					<strong>GitHub:</strong> <a href="https://github.com/brennoaq">https://github.com/brennoaq</a>
 				</div>
 				
 				
