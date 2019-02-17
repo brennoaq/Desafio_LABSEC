@@ -3,7 +3,7 @@ from werkzeug.utils import secure_filename
 from flask import Flask, flash, request, redirect, url_for, send_from_directory
 from src.file_hashing.file_hash import FileHashing
 from src.pair_generator.key_pair import KeyPairGenerator
-from OpenSSL import crypto, SSL, 
+from OpenSSL import crypto, SSL
 from socket import gethostname
 from pprint import pprint
 from time import gmtime, mktime
@@ -134,6 +134,11 @@ def create_self_signed_cert():
     with open("ca.key", "wb") as f:
         f.write(crypto.dump_privatekey(crypto.FILETYPE_PEM, ca_key))
 
+    cert_ca = crypto.dump_certificate(crypto.FILETYPE_PEM, ca_cert).decode('utf-8')
+    key_ca = crypto.dump_privatekey(crypto.FILETYPE_PEM, ca_key).decode('utf-8')     
+
+    db.store_cert(cert_ca, key_ca, serial_number, subject_name)
+
     ###############
     # Client Cert #
     ###############
@@ -143,11 +148,11 @@ def create_self_signed_cert():
     client_cert = crypto.X509()
     client_cert.set_version(2)
     serial_number2 = random.randint(50000000, 100000000)
-    client_cert.set_serial_number(random.randint(50000000, 100000000)
+    client_cert.set_serial_number(random.randint(50000000, 100000000))
    
     client_subj = client_cert.get_subject()
     client_subj.commonName = "Client"
-    subject_name2 = ca_subj.commonName
+    subject_name2 = client_subj.commonName
 
     client_cert.add_extensions([
         crypto.X509Extension("basicConstraints".encode('utf-8'), False, "CA:FALSE".encode('utf-8')),
@@ -163,23 +168,23 @@ def create_self_signed_cert():
     ])
 
     client_cert.set_issuer(ca_subj)
-    client_cert.set_pubkey(client_key)''
-    client_cert.sign(ca_key, 'sha256')
-
+    client_cert.set_pubkey(client_key)
     client_cert.gmtime_adj_notBefore(0)
     client_cert.gmtime_adj_notAfter(10*365*24*60*60)
+    client_cert.sign(ca_key, 'sha256')
+
 
     cert = crypto.dump_certificate(crypto.FILETYPE_PEM, client_cert).decode('utf-8')
     key = crypto.dump_privatekey(crypto.FILETYPE_PEM, client_key).decode('utf-8')     
 
-    db.store_cert(cert,key,serial_number2,subject_name2)
+    # db.store_cert(cert, key, serial_number, subject_name)
 
     return  ''' 
         <!doctype html>
         <title> Certificado </title>
         <br/>
         <br/>
-        <h1>  </h1> '''+ cert
+        <h1>  </h1> '''+ cert_ca
 
 @app.route('/listSerialNumber')
 def list_serialNumber():
