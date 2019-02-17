@@ -34,7 +34,8 @@ def index():
 			<img src="imagens/capa.png">
 			
 			<div id="menu">
-				<a href="Index.html">HOME</a> |
+                <a href="/">HOME</a> |
+				<a href="/file">RESUMO CRIPTOGRÁFICO</a> |
 				<a href="Biografia.html">BIOGRAFIA</a> |
 				<a href="Campanha-publicitaria.html">CAMPANHAS PUBLICITÁRIA</a> |
 				<a href="Contato.html">CONTATO</a>
