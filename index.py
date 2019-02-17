@@ -1,6 +1,6 @@
 import os,random, db
 from werkzeug.utils import secure_filename
-from flask import Flask, flash, request, redirect, url_for, send_from_directory
+from flask import Flask, flash, request, redirect, url_for, send_from_directory,send_file
 from src.file_hashing.file_hash import FileHashing
 from src.pair_generator.key_pair import KeyPairGenerator
 from OpenSSL import crypto, SSL
@@ -12,6 +12,7 @@ from time import gmtime, mktime
 app = Flask(__name__)
 UPLOAD_FOLDER = './static'
 ALLOWED_EXTENSIONS = set(['txt'])
+ALLOWED_EXTENSIONS = set(['png'])
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
@@ -24,48 +25,99 @@ def index():
 
 		<title>Test LABSEC</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="Estilo.css">
+	
+         <style>
+            body{
+	                background: #0d2b72da url('imagens/background.png');
+	                font: 16px "Arial", helvetica, Sans-serif;
+                }
 
+                #principal{
+                    width: 900px;
+                }
+
+                #menu{
+                    background: #0d2b72da;
+                    padding: 18px
+                }
+
+                #conteudo{
+                    background: #1b46acda;
+                    padding: 10px;
+                }
+
+                #rodape{
+                        text-align: center;
+                }
+
+
+                a{
+                    color: #000000;
+                    text-decoration: none;
+                    font-weight: bold;
+                    padding: 5px;
+                }
+
+                h1{
+                    color:#828271;
+                    font-size: 1.2em;
+                }
+
+                h2{
+                    color:#828271;
+                    font-size: 1.2em;	
+                }
+
+                .img-campanha{
+                    border: 10px solid #c3c3ae;
+                }
+
+                .italico{
+                    font-style: italic;
+                }
+
+                .negrito{
+                    font-weight: bold;
+                }
+        </style>
 	</head>
 	<body>
+        <table border="0" width="900" align="center">
+            <div id="principal">
+                
+                <img src="./labsec-brenno/imagens/capa.png">
+                
+                <div id="menu">
+                    <a href="/">HOME</a> |
+                    <a href="/file">RESUMO CRIPTOGRÁFICO</a> |
+                    <a href="/keys">GERAR CHAVES ASSIMETRÍCAS</a> |
+                    <a href="/DigitalCertificate">GERAR CERTIFICADOS DIGITAIS</a> |
+                    <a href="/listSerialNumber">REPOSITÓRIO PARA CERTIFICADOS EMITIDOS</a>
+                </div>
+                    
+                <div id="conteudo"><!-- inicio do conteudo-->
 
-		<div id="principal">
-			
-			<img src="labsec-brenno/imagens/capa.png">
-			
-			<div id="menu">
-                <a href="/">HOME</a> |
-				<a href="/file">RESUMO CRIPTOGRÁFICO</a> |
-				<a href="/keys">GERAR CHAVES ASSIMETRÍCAS</a> |
-				<a href="/DigitalCertificate">GERAR CERTIFICADOS DIGITAIS</a> |
-				<a href="/listSerialNumber">REPOSITÓRIO PARA CERTIFICADOS EMITIDOS</a>
-			</div>
-				
-			<div id="conteudo"><!-- inicio do conteudo-->
+                    <h1>Contato</h1>
 
-				<h1>Contato</h1>
+                    <p class="italico">
+                        "Não há liberdade sem privacidade."
+                    </p>
 
-				<p class="italico">
-					"Não há liberdade sem privacidade."
-				</p>
+                    <div>
+                        <strong>E-mail:</strong> brennoaraujoqueiroz@gmail.com 
+                        <br>
+                        <strong>GitHub:</strong> <a href="https://github.com/brennoaq">https://github.com/brennoaq</a>
+                    </div>
+                    
+                    
+                </div><!-- fim do conteudo-->
 
-				<img src="imagens/foto2.png" class="img-campanha">
+                <div id="rodape">
+                    <h4>Todos os direitos reservados</h4>
+                </div>
 
-				<div>
-					<strong>E-mail:</strong> brennoaraujoqueiroz@gmail.com 
-					<br>
-					<strong>GitHub:</strong> <a href="https://github.com/brennoaq">https://github.com/brennoaq</a>
-				</div>
-				
-				
-			</div><!-- fim do conteudo-->
-
-			<div id="rodape">
-				<h4>Todos os direitos reservados</h4>
-			</div>
-
-		</div>
-		
+            </div>
+		</table>
 
 	</body>
 </html>
@@ -96,6 +148,7 @@ def file():
                 filename = secure_filename(file.filename)
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                 return redirect(url_for('uploaded_file', file=filename))
+                
 
     return '''
         <!doctype html>
