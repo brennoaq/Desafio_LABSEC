@@ -22,87 +22,30 @@ def index():
     <!DOCTYPE html>
 <html>
 	<head>
-
-		<title>Test LABSEC</title>
+		<title>LABSEC</title>
 		<meta charset="utf-8">
-	
-         <style>
-            body{
-	                background: #0d2b72da url('imagens/background.png');
-	                font: 16px "Arial", helvetica, Sans-serif;
-                }
+        <link rel="stylesheet" type="text/css" href="static/Estilo.css">
 
-                #principal{
-                    width: 900px;
-                }
-
-                #menu{
-                    background: #0d2b72da;
-                    padding: 18px
-                }
-
-                #conteudo{
-                    background: #1b46acda;
-                    padding: 10px;
-                }
-
-                #rodape{
-                        text-align: center;
-                }
-
-
-                a{
-                    color: #000000;
-                    text-decoration: none;
-                    font-weight: bold;
-                    padding: 5px;
-                }
-
-                h1{
-                    color:#828271;
-                    font-size: 1.2em;
-                }
-
-                h2{
-                    color:#828271;
-                    font-size: 1.2em;	
-                }
-
-                .img-campanha{
-                    border: 10px solid #c3c3ae;
-                }
-
-                .italico{
-                    font-style: italic;
-                }
-
-                .negrito{
-                    font-weight: bold;
-                }
-        </style>
+         
 	</head>
 	<body>
         <table border="0" width="900" align="center">
             <div id="principal">
-                
-                <img src="./labsec-brenno/imagens/capa.png">
                 
                 <div id="menu">
                     <a href="/">HOME</a> |
                     <a href="/file">RESUMO CRIPTOGRÁFICO</a> |
                     <a href="/keys">GERAR CHAVES ASSIMETRÍCAS</a> |
                     <a href="/DigitalCertificate">GERAR CERTIFICADOS DIGITAIS</a> |
-                    <a href="/listSerialNumber">REPOSITÓRIO PARA CERTIFICADOS EMITIDOS</a>
+                    <a href="/listSerialNumber">REPOSITÓRIO PARA NUMEROS DE SERIE EMITIDOS</a>
+                    <a href="/listCertificate">REPOSITÓRIO PARA CERTIFICADOS EMITIDOS</a>
                 </div>
                     
                 <div id="conteudo"><!-- inicio do conteudo-->
-
                     <h1>Contato</h1>
-
                     <p class="italico">
                         "Não há liberdade sem privacidade."
                     </p>
-
                     <div>
                         <strong>E-mail:</strong> brennoaraujoqueiroz@gmail.com 
                         <br>
@@ -111,14 +54,11 @@ def index():
                     
                     
                 </div><!-- fim do conteudo-->
-
                 <div id="rodape">
                     <h4>Todos os direitos reservados</h4>
                 </div>
-
             </div>
 		</table>
-
 	</body>
 </html>
     '''
@@ -150,21 +90,107 @@ def file():
                 return redirect(url_for('uploaded_file', file=filename))
                 
 
-    return '''
-        <!doctype html>
-        <title>Upload new File</title>
-        <h1>Upload new File</h1>
-        <form method=post enctype=multipart/form-data>
-        <input type=file name=file>
-        <input type=submit value=Upload>
-        </form>
+    return ''' 
+    <!DOCTYPE html>
+<html>
+	<head>
+		<title>LABSEC</title>
+		<meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="static/Estilo.css">
+
+         
+	</head>
+	<body>
+        <table border="0" width="900" align="center">
+            <div id="principal">
+                
+                <div id="menu">
+                    <a href="/">HOME</a> |
+                    <a href="/file">RESUMO CRIPTOGRÁFICO</a> |
+                    <a href="/keys">GERAR CHAVES ASSIMETRÍCAS</a> |
+                    <a href="/DigitalCertificate">GERAR CERTIFICADOS DIGITAIS</a> |
+                    <a href="/listSerialNumber">REPOSITÓRIO PARA NUMEROS DE SERIE EMITIDOS</a>
+                    <a href="/listCertificate">REPOSITÓRIO PARA CERTIFICADOS EMITIDOS</a>
+                        
+                </div>
+                    
+                <div id="conteudo"><!-- inicio do conteudo-->
+                    
+                    <h1>Upload new File</h1>
+                    <form method=post enctype=multipart/form-data>
+                    <input type=file name=file>
+                    <input type=submit value=Upload>
+                    </form>
+                    <p class="italico">
+                        "Não há liberdade sem privacidade."
+                    </p>
+                    <div>
+                        <strong>E-mail:</strong> brennoaraujoqueiroz@gmail.com 
+                        <br>
+                        <strong>GitHub:</strong> <a href="https://github.com/brennoaq">https://github.com/brennoaq</a>
+                    </div>
+                    
+                    
+                </div><!-- fim do conteudo-->
+                <div id="rodape">
+                    <h4>Todos os direitos reservados</h4>
+                </div>
+            </div>
+		</table>
+	</body>
+</html>
     '''
 
 
 @app.route('/hash/<file>')
 def uploaded_file(file):
     with app.open_resource('static/' + file) as f:
-        return FileHashing().hash_file(f.read())
+        return ''' 
+    <!DOCTYPE html>
+<html>
+	<head>
+		<title>LABSEC</title>
+		<meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="static/Estilo.css">
+
+         
+	</head>
+	<body>
+        <table border="0" width="900" align="center">
+            <div id="principal">
+                
+                <div id="menu">
+                    <a href="/">HOME</a> |
+                    <a href="/file">RESUMO CRIPTOGRÁFICO</a> |
+                    <a href="/keys">GERAR CHAVES ASSIMETRÍCAS</a> |
+                    <a href="/DigitalCertificate">GERAR CERTIFICADOS DIGITAIS</a> |
+                    <a href="/listSerialNumber">REPOSITÓRIO PARA NUMEROS DE SERIE EMITIDOS</a>
+                    <a href="/listCertificate">REPOSITÓRIO PARA CERTIFICADOS EMITIDOS</a>
+                        
+                </div>
+                    
+                <div id="conteudo"><!-- inicio do conteudo-->
+                    
+                    '''+FileHashing().hash_file(f.read())+'''
+                    <p class="italico">
+                        "Não há liberdade sem privacidade."
+                    </p>
+                    <div>
+                        <strong>E-mail:</strong> brennoaraujoqueiroz@gmail.com 
+                        <br>
+                        <strong>GitHub:</strong> <a href="https://github.com/brennoaq">https://github.com/brennoaq</a>
+                    </div>
+                    
+                    
+                </div><!-- fim do conteudo-->
+                <div id="rodape">
+                    <h4>Todos os direitos reservados</h4>
+                </div>
+            </div>
+		</table>
+	</body>
+</html>
+    '''
 
 
 @app.route("/keys")
@@ -181,15 +207,54 @@ def keysAssimetric():
     for line in key2.splitlines():
         result2 += line.decode() + '\n'
 
-    return '''
-        
-        <!doctype html>
-        <title>Chaves  publicas e privadas </title>
-        <br/>
-        <h1>Chave publica </h1>'''+result2+'''
+    return ''' 
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <title>LABSEC</title>
+            <meta charset="utf-8">
+            <link rel="stylesheet" type="text/css" href="static/Estilo.css">
 
-        <br/>
-        <h1>Chave privada </h1>'''+result
+            
+        </head>
+        <body>
+            <table border="0" width="900" align="center">
+                <div id="principal">
+                    
+                    <div id="menu">
+                        <a href="/">HOME</a> |
+                        <a href="/file">RESUMO CRIPTOGRÁFICO</a> |
+                        <a href="/keys">GERAR CHAVES ASSIMETRÍCAS</a> |
+                        <a href="/DigitalCertificate">GERAR CERTIFICADOS DIGITAIS</a> |
+                        <a href="/listSerialNumber">REPOSITÓRIO PARA NUMEROS DE SERIE EMITIDOS</a>|
+                        <a href="/listCertificate">REPOSITÓRIO PARA CERTIFICADOS EMITIDOS</a>
+                    </div>
+                        
+                    <div id="conteudo"><!-- inicio do conteudo-->
+                        
+                        <br/>
+                        <h1>Chave publica </h1>'''+result2+'''
+                        <br/>
+                        <h1>Chave privada </h1>'''+result+'''
+                        <p class="italico">
+                            "Não há liberdade sem privacidade."
+                        </p>
+                        <div>
+                            <strong>E-mail:</strong> brennoaraujoqueiroz@gmail.com 
+                            <br>
+                            <strong>GitHub:</strong> <a href="https://github.com/brennoaq">https://github.com/brennoaq</a>
+                        </div>
+                        
+                        
+                    </div><!-- fim do conteudo-->
+                    <div id="rodape">
+                        <h4>Todos os direitos reservados</h4>
+                    </div>
+                </div>
+            </table>
+        </body>
+    </html>
+'''
 
 
 @app.route("/DigitalCertificate")
@@ -242,7 +307,7 @@ def create_self_signed_cert():
     cert_ca = crypto.dump_certificate(crypto.FILETYPE_PEM, ca_cert).decode('utf-8')
     key_ca = crypto.dump_privatekey(crypto.FILETYPE_PEM, ca_key).decode('utf-8')     
 
-    db.store_cert(cert_ca, key_ca, serial_number, subject_name)
+    db.store_cert(cert_ca, key_ca, serial_number, subject_name.subject)
 
     ###############
     # Client Cert #
@@ -256,8 +321,7 @@ def create_self_signed_cert():
     client_cert.set_serial_number(random.randint(50000000, 100000000))
    
     client_subj = client_cert.get_subject()
-    client_subj.commonName = "Client"
-    subject_name2 = client_subj.commonName
+    subject_name2 = client_subj.commonName = "Client"
 
     client_cert.add_extensions([
         crypto.X509Extension("basicConstraints".encode('utf-8'), False, "CA:FALSE".encode('utf-8')),
@@ -278,47 +342,138 @@ def create_self_signed_cert():
     client_cert.gmtime_adj_notAfter(10*365*24*60*60)
     client_cert.sign(ca_key, 'sha256')
 
+    # Save certificate
+    with open("ca.crt", "wb") as f:
+        f.write(crypto.dump_certificate(crypto.FILETYPE_PEM, client_cert))
 
-    cert = crypto.dump_certificate(crypto.FILETYPE_PEM, client_cert).decode('utf-8')
-    key = crypto.dump_privatekey(crypto.FILETYPE_PEM, client_key).decode('utf-8')     
+    # Save private key
+    with open("ca.key", "wb") as f:
+        f.write(crypto.dump_privatekey(crypto.FILETYPE_PEM, client_key))
 
-    # db.store_cert(cert, key, serial_number, subject_name)
+    cert_client = crypto.dump_certificate(crypto.FILETYPE_PEM, client_cert).decode('utf-8')
+    key_client = crypto.dump_privatekey(crypto.FILETYPE_PEM, client_key).decode('utf-8')     
+
+    #  db.store_cert(cert, key, serial_number2, subject_name2)
 
     return  ''' 
-        <!doctype html>
-        <title> Certificado </title>
-        <br/>
-        <br/>
-        <h1>  </h1> '''+ cert_ca
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <title>Test LABSEC</title>
+            <meta charset="utf-8">
+            <link rel="stylesheet" type="text/css" href="static/Estilo.css">
+
+            
+        </head>
+        <body>
+            <table border="0" width="900" align="center">
+                <div id="principal">
+                    
+                    <div id="menu">
+                        <a href="/">HOME</a> |
+                        <a href="/file">RESUMO CRIPTOGRÁFICO</a> |
+                        <a href="/keys">GERAR CHAVES ASSIMETRÍCAS</a> |
+                        <a href="/DigitalCertificate">GERAR CERTIFICADOS DIGITAIS</a> |
+                        <a href="/listSerialNumber">REPOSITÓRIO PARA NUMEROS DE SERIE EMITIDOS</a>|
+                        <a href="/listCertificate">REPOSITÓRIO PARA CERTIFICADOS EMITIDOS</a>
+                    </div>
+                        
+                    <div id="conteudo"><!-- inicio do conteudo-->
+                        <h1>Certificado</h1>
+                        <br>
+                        <p>'''+ cert_client+'''</p>
+                        <p class="italico">
+                            "Não há liberdade sem privacidade."
+                        </p>
+                        <div>
+                            <strong>E-mail:</strong> brennoaraujoqueiroz@gmail.com 
+                            <br>
+                            <strong>GitHub:</strong> <a href="https://github.com/brennoaq">https://github.com/brennoaq</a>
+                        </div>
+                        
+                        
+                    </div><!-- fim do conteudo-->
+                    <div id="rodape">
+                        <h4>Todos os direitos reservados</h4>
+                    </div>
+                </div>
+            </table>
+        </body>
+    </html>
+'''
+
+
 
 @app.route('/listSerialNumber')
 def list_serialNumber():
     serials = db.list_cert()
    
     html = [
-         '''
-        <!doctype html>
-        <title> Certificado </title>
-        '''
+       ''' 
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <title>LABSEC</title>
+            <meta charset="utf-8">
+            <link rel="stylesheet" type="text/css" href="static/Estilo.css">
+
+            
+        </head>
+        <body>
+            <table border="0" width="900" align="center">
+                <div id="principal">
+                    
+                    <div id="menu">
+                        <a href="/">HOME</a> |
+                        <a href="/file">RESUMO CRIPTOGRÁFICO</a> |
+                        <a href="/keys">GERAR CHAVES ASSIMETRÍCAS</a> |
+                        <a href="/DigitalCertificate">GERAR CERTIFICADOS DIGITAIS</a> |
+                        <a href="/listSerialNumber">REPOSITÓRIO PARA NUMEROS DE SERIE EMITIDOS</a>
+                        <a href="/listCertificate">REPOSITÓRIO PARA CERTIFICADOS EMITIDOS</a>
+                    </div>
+                        
+                    <div id="conteudo"><!-- inicio do conteudo-->
+                       
+                        <h1>CONSIDERAR A PARTIR DO SERIAL NUMERO 70</h1>
+
+                        <p class="italico">
+                            "Não há liberdade sem privacidade."
+                        </p>
+                        <div>
+                            <strong>E-mail:</strong> brennoaraujoqueiroz@gmail.com 
+                            <br>
+                            <strong>GitHub:</strong> <a href="https://github.com/brennoaq">https://github.com/brennoaq</a>
+                        </div>
+                        
+                        
+                    </div><!-- fim do conteudo-->
+                    <div id="rodape">
+                        <h4>Todos os direitos reservados</h4>
+                    </div>
+                </div>
+            </table>
+        </body>
+    </html>
+'''
     ]
 
 
     for serial in serials:
         html.append(
             '''
-            <h3>Serial Number {}</h3>
+            <h3>ID {}</h3>
             '''.format(serial['id'])
         )
         
         html.append(
             '''
-            <h3>{}</h3>
+            <h3>Serial Number {}</h3>
             '''.format(serial['serialNumber'])
         )
 
         html.append(
             '''
-            <h3>{}</h3>
+            <h3>Subject {}</h3>
             '''.format(serial['subject'])
         )
 
@@ -330,23 +485,63 @@ def list_certificate():
     certs = db.list_cert()
 
     html = [
-        '''
-        <!doctype html>
-        <title> Certificado </title>
-        '''
+         ''' 
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <title>LABSEC</title>
+            <meta charset="utf-8">
+            <link rel="stylesheet" type="text/css" href="static/Estilo.css">
+
+            
+        </head>
+        <body>
+            <table border="0" width="900" align="center">
+                <div id="principal">
+                    
+                    <div id="menu">
+                        <a href="/">HOME</a> |
+                        <a href="/file">RESUMO CRIPTOGRÁFICO</a> |
+                        <a href="/keys">GERAR CHAVES ASSIMETRÍCAS</a> |
+                        <a href="/DigitalCertificate">GERAR CERTIFICADOS DIGITAIS</a> |
+                        <a href="/listSerialNumber">REPOSITÓRIO PARA NUMEROS DE SERIE EMITIDOS</a> |
+                        <a href="/listCertificate">REPOSITÓRIO PARA CERTIFICADOS EMITIDOS</a>
+                    </div>
+                        
+                    <div id="conteudo"><!-- inicio do conteudo-->
+                        
+                        <h1>CONSIDERAR A PARTIR DO CERTIFICADO NUMERO 70</h1>
+                        <p class="italico">
+                            "Não há liberdade sem privacidade."
+                        </p>
+                        <div>
+                            <strong>E-mail:</strong> brennoaraujoqueiroz@gmail.com 
+                            <br>
+                            <strong>GitHub:</strong> <a href="https://github.com/brennoaq">https://github.com/brennoaq</a>
+                        </div>
+                        
+                        
+                    </div><!-- fim do conteudo-->
+                    <div id="rodape">
+                        <h4>Todos os direitos reservados</h4>
+                    </div>
+                </div>
+            </table>
+        </body>
+    </html>
+'''
     ]
 
     for cert in certs: 
         html.append( 
             '''
-            <h3>Certificate {}</h3>
+            <h3>ID {}</h3>
             '''.format(cert['id'])
         )
 
         html.append(
             ''' 
-            <h5>{}</h5>
-
+            <h5>Certificate {}</h5>
             '''.format(cert['cert'])
         )
 

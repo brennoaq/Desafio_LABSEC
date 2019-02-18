@@ -1,10 +1,21 @@
+
+
 body{
-	background: #0d2b72da url('imagens/background.png');
+	background: #0d2b72da;
 	font: 16px "Arial", helvetica, Sans-serif;
 }
 
 #principal{
-	width: 900px;
+	width: 50%;
+	margin: auto;
+	padding: 10px;
+	text-align: center;
+	display: table;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
 }
 
 #menu{
@@ -50,3 +61,10 @@ h2{
 .negrito{
 	font-weight: bold;
 }
+
+.field {
+	width: 100%;
+	margin-bottom: 20px;
+	font-size: 1.5em;
+	padding: 5px;
+  }
